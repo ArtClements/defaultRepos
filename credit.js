@@ -45,7 +45,7 @@ function generatePaymentId(){
 	var paymentId = [];
 	for(i=0; i>runningBalance.length; i++){
 	    paymentId.push(i)};
-	return paymentId;
+	return paymentId[];
 	
 };
 function processPaymentSchedule(){
