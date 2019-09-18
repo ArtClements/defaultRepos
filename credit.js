@@ -16,11 +16,11 @@ Create a program that will determine the length and time needed to pay off a cre
  the information doesnt state specifics so for this instance I will assume it is a simple interest and only applies
  once to the total value of the balance.
 */
-var startingBalance = 1500.00
-var interestRate = 1.18
-var minimumPayRate = .02
-var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate)
-var totalDue = startingBalance*interestRate
+var startingBalance = 1500.00;
+var interestRate = 1.18;
+var minimumPayRate = .02;
+var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
+var totalDue = generateBalancesDue(startingBalance, interestRate, minimumPayment);
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -29,17 +29,31 @@ function displayWelcome(){
 	" interest rate as well as minimum payments \npercentages, provide"+
 	" you your monthly minimum payments\n"+
 	"------------------------------------------------------------------------------------------------"
-}
+};
 function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
 	return minimumPayAmt.toFixed(2)
-}
+};
+/*i think this is making progress, although i am doing something wrong. this adds an array of 50 values to totalDue,
+which is the total amount of equal payments that would be included in this scenario, however the array when i logged
+in console of chrome just shows Array(50). so i am filling an array with 50 objects, but i cant get that array return
+back to main and display its contents. will see what i can get in notepad++ when i get home.
+*/
+function generateBalancesDue(startingBalance, interestRate, minimumPayment){
+	totalIncludingInterest = startingBalance*interestRate
+	var totalDueArray = [];
+	while ( totalIncludingInterest> 0){
+		totalDueArray.push(totalDueArray)
+		totalIncludingInterest -=minimumPayment;
+	}
+	return totalDueArray[];
+};
 function generatePaymentId(){
 	
-}
+};
 function processPaymentSchedule(){
 
-}
+};
 function displayPayment(){
 
-}
+};
