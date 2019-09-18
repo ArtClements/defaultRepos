@@ -20,7 +20,13 @@ var startingBalance = 1500.00;
 var interestRate = 1.18;
 var minimumPayRate = .02;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
-var totalDue = generateBalancesDue(startingBalance, interestRate, minimumPayment);
+var totalDue = startingBalance*interestRate
+var runningBalance = [];
+var paymentId = generatePaymentId();
+while (totalDue> 0){
+	runningBalance.push(totalDue.toFixed(2))
+	totalDue -= minimumPayment;
+	};
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -34,21 +40,12 @@ function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
 	return minimumPayAmt.toFixed(2)
 };
-/*i think this is making progress, although i am doing something wrong. this adds an array of 50 values to totalDue,
-which is the total amount of equal payments that would be included in this scenario, however the array when i logged
-in console of chrome just shows Array(50). so i am filling an array with 50 objects, but i cant get that array return
-back to main and display its contents. will see what i can get in notepad++ when i get home.
-*/
-function generateBalancesDue(startingBalance, interestRate, minimumPayment){
-	totalIncludingInterest = startingBalance*interestRate
-	var totalDueArray = [];
-	while ( totalIncludingInterest> 0){
-		totalDueArray.push(totalDueArray)
-		totalIncludingInterest -=minimumPayment;
-	}
-	return totalDueArray[];
-};
+
 function generatePaymentId(){
+	var paymentId = [];
+	for(i=0; i>runningBalance.length; i++){
+	    paymentId.push(i)};
+	return paymentId;
 	
 };
 function processPaymentSchedule(){
