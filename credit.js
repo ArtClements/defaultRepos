@@ -19,7 +19,7 @@ Create a program that will determine the length and time needed to pay off a cre
 var startingBalance = 1500.00
 var interestRate = 1.18
 var minimumPayRate = .02
-var minimumPayment = calculateMinimumPayment()
+var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate)
 var totalDue = startingBalance*interestRate
 
 function displayWelcome(){
@@ -30,7 +30,7 @@ function displayWelcome(){
 	" you your monthly minimum payments\n"+
 	"------------------------------------------------------------------------------------------------"
 }
-function calculateMinimumPayment(){
+function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
 	return minimumPayAmt.toFixed(2)
 }
