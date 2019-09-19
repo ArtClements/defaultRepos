@@ -42,21 +42,24 @@ function generateRunningBalance(totalDue, minimumPayment){
 		totalDue -= minimumPayment;
 		};
 	return runningBalance;
-}
+};
 
-function generateYear(runningBalance){
+function generateYear(runningBalance, minimumPayment){
 	var paymentYear = [];
-	if (runningBalance.position<12)
-		return paymentYear = "1"
-		else if (runningBalance.position>11 || runningBalance.position<24)
-			return paymentYear = "2"
-			else if (runningBalance.position>23 || runningBalance.position<36)
-				return paymentYear = "3"
-				else if (runningBalance.position>35|| runningBalance.position<48)
-					return paymentYear = "4"
-					else if (runningBalance.position>47|| runningBalance.position<60)
-						return paymentYear = "5+"
-}
+		for (i=0; runningBalance>0;i++){
+			if (runningBalance[i]<12)
+				paymentYear.push("1")
+				else if (runningBalance[i]>11 || runningBalance[i]<24)
+					paymentYear.push("2")
+					else if (runningBalance[i]>23 || runningBalance[i]<36)
+						paymentYear.push("3")
+						else if (runningBalance[i]>35|| runningBalance[i]<48)
+						paymentYear.push("4")
+							else if (runningBalance[i]>47|| runningBalance[i]<60)
+							paymentYear.push("5")}
+		runningBalance-=minimumPayment;
+return paymentYear
+};
 
 function generatePaymentId(){
 	paymentId = [];
