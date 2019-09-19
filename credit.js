@@ -44,6 +44,11 @@ function generateRunningBalance(totalDue, minimumPayment){
 	return runningBalance;
 };
 
+function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
+	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
+	return minimumPayAmt.toFixed(2)
+};
+
 function generateYear(runningBalance, minimumPayment){
 	var paymentYear = [];
 		for (i=0; runningBalance>0;i++){
