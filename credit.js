@@ -22,7 +22,6 @@ var minimumPayRate = .02;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
 var totalDue = startingBalance*interestRate
 var runningBalance = [];
-var paymentId = generatePaymentId();
 while (totalDue> 0){
 	runningBalance.push(totalDue.toFixed(2))
 	totalDue -= minimumPayment;
@@ -42,11 +41,11 @@ function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 };
 
 function generatePaymentId(){
-	var paymentId = [];
-	for(i=0; i>runningBalance.length; i++){
-	    paymentId.push(i)};
-	return paymentId[];
-	
+	paymentId = [];
+	for (i=1; i<runningBalance.length+1; i++){
+		paymentId.push(i);}
+	return paymentId;
+
 };
 function processPaymentSchedule(){
 
@@ -54,3 +53,5 @@ function processPaymentSchedule(){
 function displayPayment(){
 
 };
+
+console.log();
