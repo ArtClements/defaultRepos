@@ -19,15 +19,12 @@ Create a program that will determine the length and time needed to pay off a cre
  once to the total value of the balance.
 */
 var startingBalance = 1500.00;
-var interestRate = 1.18;
+var interestRate = .18;
 var minimumPayRate = .02;
+var totalDue = (startingBalance*interestRate)+startingBalance;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
-var totalDue = startingBalance*interestRate
-var runningBalance = [];
-while (totalDue> 0){
-	runningBalance.push(totalDue.toFixed(2))
-	totalDue -= minimumPayment;
-	};
+var runningBalance = generateRunningBalance(totalDue, minimumPayment);
+var paymentYear = generateYear(runningBalance);
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -37,10 +34,29 @@ function displayWelcome(){
 	" you your monthly minimum payments\n"+
 	"------------------------------------------------------------------------------------------------"
 };
-function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
-	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
-	return minimumPayAmt.toFixed(2)
-};
+
+function generateRunningBalance(totalDue, minimumPayment){
+	var runningBalance = [];
+	while (totalDue> 0){
+		runningBalance.push(totalDue.toFixed(2))
+		totalDue -= minimumPayment;
+		};
+	return runningBalance;
+}
+
+function generateYear(runningBalance){
+	var paymentYear = [];
+	if (runningBalance.position<12)
+		return paymentYear = "1"
+		else if (runningBalance.position>11 || runningBalance.position<24)
+			return paymentYear = "2"
+			else if (runningBalance.position>23 || runningBalance.position<36)
+				return paymentYear = "3"
+				else if (runningBalance.position>35|| runningBalance.position<48)
+					return paymentYear = "4"
+					else if (runningBalance.position>47|| runningBalance.position<60)
+						return paymentYear = "5+"
+}
 
 function generatePaymentId(){
 	paymentId = [];
@@ -49,9 +65,11 @@ function generatePaymentId(){
 	return paymentId;
 
 };
+
 function processPaymentSchedule(){
 
 };
+
 function displayPayment(){
 
 };
