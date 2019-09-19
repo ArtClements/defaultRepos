@@ -12,6 +12,8 @@ Create a program that will determine the length and time needed to pay off a cre
  card balance:1500
  interest rate: 18%
  minimum payments required: 2% of total balance.
+ Each time a new payment line is calculated, create an object literal with properties of the year,
+ balance, payment id and interest paid.
  -displayPayment: a function that takes the payment object literal and displays it to console.
  the information doesnt state specifics so for this instance I will assume it is a simple interest and only applies
  once to the total value of the balance.
