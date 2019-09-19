@@ -24,7 +24,7 @@ var minimumPayRate = .02;
 var totalDue = (startingBalance*interestRate)+startingBalance;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
 var runningBalance = generateRunningBalance(totalDue, minimumPayment);
-var paymentYear = generateYear(runningBalance);
+var paymentYr = generateYear(runningBalance);
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -53,16 +53,20 @@ function generateYear(runningBalance, minimumPayment){
 	var paymentYear = [];
 		for (i=0; runningBalance>0;i++){
 			if (runningBalance[i]<12)
-				paymentYear.push("1")
-				else if (runningBalance[i]>11 || runningBalance[i]<24)
-					paymentYear.push("2")
-					else if (runningBalance[i]>23 || runningBalance[i]<36)
-						paymentYear.push("3")
-						else if (runningBalance[i]>35|| runningBalance[i]<48)
-						paymentYear.push("4")
-							else if (runningBalance[i]>47|| runningBalance[i]<60)
-							paymentYear.push("5")}
-		runningBalance-=minimumPayment;
+				paymentYear.push("1");
+				runningBalance-=minimumPayment;
+				if (runningBalance[i]>11 || runningBalance[i]<24)
+					paymentYear.push("2");
+					runningBalance-=minimumPayment;
+					if (runningBalance[i]>23 || runningBalance[i]<36)
+						paymentYear.push("3");
+						runningBalance-=minimumPayment;
+						if (runningBalance[i]>35|| runningBalance[i]<48)
+						paymentYear.push("4");
+						return runningBalance;
+							if (runningBalance[i]>47|| runningBalance[i]<60)
+							paymentYear.push("5")
+							runningBalance-=minimumPayment;}
 return paymentYear
 };
 
