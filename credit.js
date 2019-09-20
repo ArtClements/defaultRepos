@@ -26,7 +26,7 @@ var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, mini
 var runningBalance = generateRunningBalance(totalDue, minimumPayment);
 var paymentYr = generateYear(runningBalance, minimumPayment);
 var paymentId = generatePaymentId();
-var interestPaid = ;
+var interestPaid = generateInterestPaid();
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -51,7 +51,7 @@ function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 	return minimumPayAmt.toFixed(2)
 };
 
-function generateInterestPaid(paymentId, startingBalance, interestRate){
+function generateInterestPaid(){
 	interestPaid = []
 	monthlyInterestCalculation = (startingBalance*interestRate)/paymentId.length
 	totalMontlyInterest = 0
