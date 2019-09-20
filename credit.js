@@ -24,7 +24,8 @@ var minimumPayRate = .02;
 var totalDue = (startingBalance*interestRate)+startingBalance;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
 var runningBalance = generateRunningBalance(totalDue, minimumPayment);
-var paymentYr = generateYear(runningBalance);
+var paymentYr = generateYear(paymentId);
+var paymentId = generatePaymentId();
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -42,32 +43,27 @@ function generateRunningBalance(totalDue, minimumPayment){
 		totalDue -= minimumPayment;
 		};
 	return runningBalance;
-};
+}
 
 function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
-	var minimumPayAmt=(startingBalance*interestRate)*minimumPayRate
+	var minimumPayAmt=((startingBalance*interestRate)+startingBalance)*minimumPayRate
 	return minimumPayAmt.toFixed(2)
 };
 
-function generateYear(runningBalance, minimumPayment){
-	var paymentYear = [];
-		for (i=0; runningBalance>0;i++){
-			if (runningBalance[i]<12)
-				paymentYear.push("1");
-				runningBalance-=minimumPayment;
-				if (runningBalance[i]>11 || runningBalance[i]<24)
-					paymentYear.push("2");
-					runningBalance-=minimumPayment;
-					if (runningBalance[i]>23 || runningBalance[i]<36)
-						paymentYear.push("3");
-						runningBalance-=minimumPayment;
-						if (runningBalance[i]>35|| runningBalance[i]<48)
-						paymentYear.push("4");
-						return runningBalance;
-							if (runningBalance[i]>47|| runningBalance[i]<60)
-							paymentYear.push("5")
-							runningBalance-=minimumPayment;}
-return paymentYear
+function generateYear(paymentId){
+	paymentYear = [];
+		for (i=0; paymentId>0;i++);
+			if (paymentId[i]<13){
+			paymentYear.push("1");}
+				if (paymentId[i]>12 || paymentId[i]<25){
+				paymentYear.push("2");}
+					if (paymentId[i]>24 || paymentId[i]<37){
+					paymentYear.push("3");}
+					if (paymentId[i]>35|| paymentId[i]<49){
+					paymentYear.push("4");}
+						if (paymentId[i]>47){
+							paymentYear.push("5+");}
+		return paymentYear
 };
 
 function generatePaymentId(){
@@ -86,4 +82,4 @@ function displayPayment(){
 
 };
 
-console.log();
+console.log(paymentYr);
