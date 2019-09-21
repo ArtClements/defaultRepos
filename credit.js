@@ -21,12 +21,14 @@ Create a program that will determine the length and time needed to pay off a cre
 var startingBalance = 1500.00;
 var interestRate = .18;
 var minimumPayRate = .02;
-var totalDue = (startingBalance*interestRate)+startingBalance;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
+var totalDue = ((startingBalance*interestRate)+startingBalance)-minimumPayment;
 var runningBalance = generateRunningBalance(totalDue, minimumPayment);
-var paymentYr = generateYear(runningBalance, minimumPayment);
+var paymentYear = generateYear(totalPayments);
 var paymentId = generatePaymentId();
-var interestPaid = generateInterestPaid();
+var totalPayments = runningBalance.length;
+var interestTotal = generateInterestTotal(startingBalance, interestRate, totalPayments);
+
 
 function displayWelcome(){
 	return "------------------------------------------------------------------------------------------------"+
@@ -51,30 +53,30 @@ function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 	return minimumPayAmt.toFixed(2)
 };
 
-function generateInterestPaid(){
-	interestPaid = []
-	monthlyInterestCalculation = (startingBalance*interestRate)/paymentId.length
+function generateInterestTotal(startingBalance, interestRate, totalPayments){
+	interestTotal = []
+	monthlyInterestCalculation = (startingBalance*interestRate)/totalPayments
 	totalMontlyInterest = 0
-	for (i=0; paymentId[i]>0; i++){
+	for (i=0; i<totalPayments; i++){
 		totalMontlyInterest += monthlyInterestCalculation
-		interestPaid.push(totalMontlyInterest.toFixed(2));}
-return interestPaid;
+		interestTotal.push(totalMontlyInterest.toFixed(2));}
+	return interestTotal;
 }
 
-function generateYear(paymentId){
+function generateYear(totalPayments){
 	paymentYear = [];
-		for (i=0; paymentId>0;i++);
-			if (paymentId[i]>0 || paymentId[i]<13){
+	for (i=0; i <totalPayments; i++);
+			if (i => 0 || i < 13){
 			paymentYear.push("1");}
-				if (paymentId[i]>12 || paymentId[i]<25){
-				paymentYear.push("2");}
-					if (paymentId[i]>24 || paymentId[i]<37){
-					paymentYear.push("3");}
-					if (paymentId[i]>35|| paymentId[i]<49){
-					paymentYear.push("4");}
-						if (paymentId[i]>47){
-							paymentYear.push("5+");}
-		return paymentYear
+			if (i > 12 || i < 25){
+			paymentYear.push("2");}
+			if (i > 24 || i < 37){
+			paymentYear.push("3");}
+			if (i > 35|| i < 49){
+			paymentYear.push("4");}
+			if (i =>47){
+			paymentYear.push("5+");}
+	return paymentYear
 };
 
 function generatePaymentId(){
@@ -82,15 +84,17 @@ function generatePaymentId(){
 	for (i=1; i<runningBalance.length+1; i++){
 		paymentId.push(i);}
 	return paymentId;
-
 };
 
 function processPaymentSchedule(){
-
+for (i=0; i<totalPayments; i++){
+	console.log(paymentYear[i]+"\t"+runningBalance[i]+"\t\t"+paymentId[i]+"\t\t"+interestTotal[i]+"\n")
+	}
 };
 
 function displayPayment(){
-
+return "Year\tBalance\t\tPayment ID\tInterest Paid\n"
 };
-
-console.log();
+console.log(displayWelcome())
+console.log(displayPayment())
+console.log(processPaymentSchedule());
