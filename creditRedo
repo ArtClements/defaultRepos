@@ -1,0 +1,64 @@
+var startingBalance = 1500.00;
+var interestRate = .18;
+var minimumPayRate = .02;
+var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
+var runningBalance = calculateRunningBalance(startingBalance, interestRate, minimumPayment);
+
+
+function displayWelcome(){
+	console.log( "------------------------------------------------------------------------------------------------"+
+	"\nWelcome to your credit card payment calcuator and schedule."+
+	" This program will, \nbased off of your current balance,"+
+	" interest rate as well as minimum payments \npercentages, provide"+
+	" you your monthly minimum payments\n"+
+	"------------------------------------------------------------------------------------------------\n"+
+	"Year\tBalance\t\tPayment ID\tInterest Paid\n"+
+	"------------------------------------------------------------------------------------------------\n");
+	}
+
+function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
+	var minimumPayment=((startingBalance*interestRate)+startingBalance)*minimumPayRate
+	return minimumPayment.toFixed(2)
+};
+
+function calculateRunningBalance(startingBalance, interestRate, minimumPayment){
+	var totalDue = ((startingBalance*interestRate)+startingBalance)-minimumPayment;
+	var runningBal = [((startingBalance*interestRate)+startingBalance),];
+	while (totalDue> 0){
+		runningBal.push(totalDue.toFixed(2))
+		totalDue -= minimumPayment;
+		};
+	return runningBal;
+}
+
+function generatePaymentId(){
+	var paymentId=1
+		function paymentIdGenerator(){
+			while (runningBalance>0){
+			paymentId++
+			}
+		return paymentId;
+		};
+	return paymentIdGenerator();
+};
+
+function processPaymentSchedule(){
+	function Payment(paymentYr, paymentBal, payId, interestPaid){
+		this.paymentYr = paymentYr;
+		this.paymentBal = paymentBal;
+		this.payId = payId;
+		this.interestPaid = interestPaid;
+		this.returnPayment = function(){
+			return this.paymentYr+"\t"+this.paymentBal+"\t"+this.payId+"\t"+this.interestPaid+"\n";
+	}
+
+
+};
+
+function displayPayment(payment){
+while(runningBalance>0){
+	console.log(payment.year + payment.balance + payment,id + payment.intereset);
+	}
+};
+
+console.log(generatePaymentId());
