@@ -3,7 +3,11 @@ var interestRate = .18;
 var minimumPayRate = .02;
 var minimumPayment = calculateMinimumPayment(startingBalance, interestRate, minimumPayRate);
 var runningBalance = calculateRunningBalance(startingBalance, interestRate, minimumPayment);
-
+var totalPayments = runningBalance.length
+var paymentIdNumbers = generatePaymentId()
+var interestTotal = generateInterestTotal(startingBalance, interestRate, totalPayments);
+var paymentYear = generateYear(totalPayments);
+var payments = processPaymentSchedule(paymentYear,runningBalance,paymentIdNumbers,interestTotal,totalPayments);
 
 function displayWelcome(){
 	console.log( "------------------------------------------------------------------------------------------------"+
@@ -11,6 +15,9 @@ function displayWelcome(){
 	" This program will, \nbased off of your current balance,"+
 	" interest rate as well as minimum payments \npercentages, provide"+
 	" you your monthly minimum payments\n"+
+	" Your starting balance is $1500, you have an 18% interest rate which will add $270"+
+	"in interest, for a total of 1770 due. At a 2% minimum payment amount, you will need to pay"+
+	"a total of $35.40 each month to pay off the balance."+
 	"------------------------------------------------------------------------------------------------\n"+
 	"Year\tBalance\t\tPayment ID\tInterest Paid\n"+
 	"------------------------------------------------------------------------------------------------\n");
@@ -23,7 +30,7 @@ function calculateMinimumPayment(startingBalance, interestRate, minimumPayRate){
 
 function calculateRunningBalance(startingBalance, interestRate, minimumPayment){
 	var totalDue = ((startingBalance*interestRate)+startingBalance)-minimumPayment;
-	var runningBal = [((startingBalance*interestRate)+startingBalance),];
+	var runningBal = [];
 	while (totalDue> 0){
 		runningBal.push(totalDue.toFixed(2))
 		totalDue -= minimumPayment;
@@ -34,31 +41,53 @@ function calculateRunningBalance(startingBalance, interestRate, minimumPayment){
 function generatePaymentId(){
 	var paymentId=1
 		function paymentIdGenerator(){
-			while (runningBalance>0){
-			paymentId++
-			}
-		return paymentId;
+			paymentIdNumbers = [];
+			for (i=paymentId; i<totalPayments+1;i++){
+			paymentIdNumbers.push(i);}
+			return paymentIdNumbers;
 		};
 	return paymentIdGenerator();
 };
 
-function processPaymentSchedule(){
-	function Payment(paymentYr, paymentBal, payId, interestPaid){
-		this.paymentYr = paymentYr;
-		this.paymentBal = paymentBal;
-		this.payId = payId;
-		this.interestPaid = interestPaid;
-		this.returnPayment = function(){
-			return this.paymentYr+"\t"+this.paymentBal+"\t"+this.payId+"\t"+this.interestPaid+"\n";
+function generateInterestTotal(startingBalance, interestRate, totalPayments){
+	interestTotal = [];
+	monthlyInterestCalculation = (startingBalance*interestRate)/totalPayments
+	totalMontlyInterest = 0
+	for (i=0; i<totalPayments; i++){
+		totalMontlyInterest += monthlyInterestCalculation
+		interestTotal.push(totalMontlyInterest.toFixed(2));}
+	return interestTotal;
+}
+
+function generateYear(totalPayments){
+	paymentYr = [];
+	for (i=0; i < totalPayments; i++){
+		var year = "";
+		if (i == 0 || i < 12)
+		year = "1"
+		if (i > 11&& i < 24)
+		year = "2"
+		if (i > 23 && i < 36)
+		year = "3"
+		if (i > 35 && i < 48)
+		year = "4"
+		if (i == 48 && i<49)
+		year = "5+"
+	paymentYr.push(year)}
+	return paymentYr;
+}
+
+function processPaymentSchedule(paymentYear,runningBalance,paymentIdNumbers,interestTotal,totalPayments){
+	var payments = [];
+	for (i=0; i<totalPayments;i++){
+		var payment = {Year: paymentYear[i], Balance:"$"+ runningBalance[i], ID: paymentIdNumbers[i], Interest: "$"+interestTotal[i]};
+		payments.push(payment);
 	}
-
-
+	return payments;
 };
 
-function displayPayment(payment){
-while(runningBalance>0){
-	console.log(payment.year + payment.balance + payment,id + payment.intereset);
-	}
+function displayPayment(){
+	console.log(payments)
 };
 
-console.log(generatePaymentId());
+displayPayment();
