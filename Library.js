@@ -21,52 +21,53 @@ call Library.simulate to test
 	this.author = author;
 	this.bookStatus = bookStatus;
 	}
+	isCheckedOut(){
+	if (this.bookStatus === "checked in"){
+	return this.bookStatus= true};
+	if (this.bookStatus === "checked out"){
+	return this.bookStatus = false};
+	}
+	CheckOut(){
+		this.bookStatus = false
+		console.log("Checking out "+this.title)
+	}
+	CheckIn(){
+		this.bookStatus = true
+		console.log("Checking in "+this.title)
+	}
 };
-Book.prototype.isCheckedOut = function(book){
-	if (Book.bookStatus === "checked in"){
-	statusIs= true}
-	if (Book.bookStatus === "checked out"){
-	statusIs = false}
-	return statusIs;
-	}
-Book.prototype.CheckOut = function(book){
-		console.log("Checking out "+book.title)
-		statusIs=false
-		return statusIs;
-	}
-Book.prototype.CheckIn = function(book){
-		console.log("Checking in "+book.title)
-		statusIs=True
-		return statusIs;
-	}
 class Library{
 	constructor(){
 		this.catalog = [];
 	};
+
+	addBook(book){
+		this.catalog.push(book);
+	};
+	
+	simulate(){
+		let i = 0
+		let x = 0
+		do{
+			x++
+			for (i; i<this.catalog.length; i++){
+				this.catalog[i].isCheckedOut()
+				if(this.catalog[i].bookStatus=true){
+				this.catalog[i].CheckOut()}
+				if(this.catalog[i].bookStatus=false){
+				this.catalog[i].CheckIn()}
+				};
+			}
+		while (x<30);
+		}
 };
 	
 var book1 = new Book("Code Complete", "Steve McConnell", "checked in");
 var book2 = new Book("The Art of Unit Testing", "Roy Osherove", "checked in");
 var book3 = new Book("Domain Driven Design", "Eric Evans", "checked in");
-var library = new Library
-Library.prototype.addBook = function(book){
-		this.catalog.push(book);
-	};
-Library.prototype.simulate = function(catalog){		
-		for (i=0; i<this.catalog.length; i++){
-			while(i < 30){
-				book.isCheckedOut();
-				if(statusIs=true){
-					book.CheckOut();
-					}
-				if(statusIs=false){
-					book.CheckIn();
-					}
-					return i++;
-				}
-			}
-	}
+var library = new Library;
 library.addBook(book1);
 library.addBook(book2);
 library.addBook(book3);	
+
 library.simulate()
