@@ -2,13 +2,14 @@
 this program will create a library of books that will then check the books in 
 and out dependant on their current rental status. The program should contain:
 Book class
-properties of title and author
+properties of title and author as well as a checked out status holder
 method titled isCheckedOut that returns true is checked out or false if not.
 method titled CheckOut that displays '"Checking out "+book.title'
 method titled CheckIn that displays '"Checking in "+book.title'
 
 Library class
 array titled catalog that holds 3 instances of the book object
+method to fill the array titled addBook
 method titled simulate that holds a while loop that runs 30 times, each
 itteration checks to see if the book is checked out, and if it is check it in.
 
