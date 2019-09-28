@@ -24,17 +24,17 @@ call Library.simulate to test
 	}
 	isCheckedOut(){
 	if (this.bookStatus === "checked in"){
-	return this.bookStatus= true};
+	return this.bookStatus= true}
 	if (this.bookStatus === "checked out"){
-	return this.bookStatus = false};
+	return this.bookStatus = false}
 	}
 	CheckOut(){
 		this.bookStatus = false
-		console.log("Checking out "+this.title)
+		console.log("Checking out "+this.title);
 	}
 	CheckIn(){
 		this.bookStatus = true
-		console.log("Checking in "+this.title)
+		console.log("Checking in "+this.title);
 	}
 };
 class Library{
@@ -47,28 +47,27 @@ class Library{
 	};
 	
 	simulate(){
-		let i = 0
 		let x = 0
-		do{
-			x++
+		let i = 0
 			for (i; i<this.catalog.length; i++){
-				this.catalog[i].isCheckedOut()
-				if(this.catalog[i].bookStatus=true){
-				this.catalog[i].CheckOut()}
-				if(this.catalog[i].bookStatus=false){
-				this.catalog[i].CheckIn()}
+				while (x<30){
+				x++
+			this.catalog[i].isCheckedOut();
+				if(this.catalog[i].bookStatus=true);
+			this.catalog[i].CheckOut();
+				if(this.catalog[i].bookStatus=false);
+			this.catalog[i].CheckIn();
 				};
 			}
-		while (x<30);
-		}
+	};
 };
-	
+
 var book1 = new Book("Code Complete", "Steve McConnell", "checked in");
 var book2 = new Book("The Art of Unit Testing", "Roy Osherove", "checked in");
 var book3 = new Book("Domain Driven Design", "Eric Evans", "checked in");
 var library = new Library;
 library.addBook(book1);
 library.addBook(book2);
-library.addBook(book3);	
+library.addBook(book3);
 
 library.simulate()
