@@ -6,8 +6,8 @@ class Player{
 	this.weapons = [];
 	}
 	
-	applyDamage(damage,health){
-		health -= damage;
+	applyDamage(enemyDamage,health){
+		health -= enemyDamage;
 		return health
 	};
 	
@@ -19,7 +19,7 @@ class Player{
 	};
 	
 	attackWith(){
-		var weapon = weapons[Math.floor(Math.random()*weapons.length)]
+		var weapon = this.weapons[Math.floor(Math.random()*this.weapons.length)]
 		return weapon;
 	};
 	
@@ -31,8 +31,14 @@ class Weapon{
 		this.damage = Math.floor((Math.random() * 5) + 1)
 	}
 	
-	attack(){
-
+	attack(player,enemy){
+		while (this.Player.isAlive == true && this.Enemy.isAlive == true){
+			playerDamage = this.Player.strength*this.Weapon.damage
+			this.Enemy.applyDamage(playerDamage)
+			this.Enemy.isAlive()
+			if (this.Enemy.isAlive = true){
+			this.Enemy.attack(this.Player)};
+		}
 	};
 
 };
@@ -44,20 +50,20 @@ class Enemy{
 		this.strength = 2;
 	}
 	
-	applyDamage(damage){
+	applyDamage(playerDamage){
 		health -= damage;
 		return health;
 	;}
 	
 	isAlive(){
-		if (health>0){
+		if (this.Enemy.health>0){
 		return true}
 		else{
 		return false};
 	};
 	
-	attack(Player){
-		Player.applyDamage(strength)
+	attack(randomPlayer, strength){
+		this.Player.applyDamage(strength)
 	}
 	
 };
@@ -108,11 +114,21 @@ class BattleSimulation{
 	};
 	
 	run(){
-		
+		console.log("Simulating Battle")
+		this.createEnemies()
+		this.createPlayers()
+		do{
+			var randomPlayer = this.players[Math.floor(Math.random() * this.players.length)]
+			var randomEnemy = this.enemies[Math.floor(Math.random() * this.enemies.length)]
+			randomPlayer.attackWith()
+			weapon.attack(randomPlayer, randomEnemy)
+		}
+		while(enemies>0);
+		console.log(players)
+		console.log(enemies)
 	};
 	
 };
+
 var firstBattle = new BattleSimulation;
-firstBattle.createEnemies();
-firstBattle.createPlayers();
-console.log(firstBattle.enemies)
+firstBattle.run()
