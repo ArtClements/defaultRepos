@@ -7,7 +7,7 @@ class Player{
 	}
 	
 	applyDamage(damage,health){
-		health =- damage;
+		health -= damage;
 		return health
 	};
 	
@@ -32,7 +32,7 @@ class Weapon{
 	}
 	
 	attack(){
-		
+
 	};
 
 };
@@ -44,8 +44,8 @@ class Enemy{
 		this.strength = 2;
 	}
 	
-	applyDamage(damage,health){
-		health =- damage;
+	applyDamage(damage){
+		health -= damage;
 		return health;
 	;}
 	
